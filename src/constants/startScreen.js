@@ -1,0 +1,1 @@
+export const INPUT_LETTERS = 'INPUT_LETTERS'

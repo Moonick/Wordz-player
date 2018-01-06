@@ -1,0 +1,2 @@
+export const SET_RESULT_IS_OPEN = 'SET_RESULT_IS_OPEN'
+export const SET_SOLUTIONS = 'SET_SOLUTIONS'

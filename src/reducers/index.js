@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
-import reducer1 from './reducer1'
+import startScreen from './startScreen'
+import resultScreen from './resultScreen'
 
 const rootReducer = combineReducers({
-    reducer1
+    startScreen,
+    resultScreen
   })
   
 export default rootReducer

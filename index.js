@@ -1,5 +1,5 @@
 import { AppRegistry } from 'react-native'
-import { Providerß } from 'react-redux'
+import { Provider } from 'react-redux'
 import React, { Component } from 'react'
 import { createStore } from 'redux'
 import reducer from './src/reducers'
