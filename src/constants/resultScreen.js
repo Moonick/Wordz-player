@@ -1,2 +1,12 @@
 export const SET_RESULT_IS_OPEN = 'SET_RESULT_IS_OPEN'
 export const SET_SOLUTIONS = 'SET_SOLUTIONS'
+
+export const LAST_ARROW = 'LAST_ARROW'
+export const LEFT_ARROW = 'LEFT_ARROW'
+export const RIGTH_ARROW = 'RIGHT_ARROW'
+export const TOP_ARROW = 'TOP_ARROW'
+export const TOP_LEFT_ARROW = 'TOP_LEFT_ARROW'
+export const TOP_RIGTH_ARROW = 'TOP_RIGTH_ARROW'
+export const BOTTOM_ARROW = 'BOTTOM_ARROW'
+export const BOTTOM_LEFT_ARROW = 'BOTTOM_LEFT_ARROW'
+export const BOTTOM_RIGTH_ARROW = 'BOTTOM_RIGTH_ARROW'

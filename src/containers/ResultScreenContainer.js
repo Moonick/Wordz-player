@@ -23,18 +23,20 @@ class ResultScreenContainer extends Component {
 
     renderMatrix({item: { word, coords }}) {
         return ( 
-            <View>
-                <Matrix matrix={matrixOfCoords(coords)} shouldAnimate />
-                <Text>{word}</Text>
+            <View style={{ display: 'flex', flex: 1, alignItems: 'center'}}>
+                <Matrix matrix={matrixOfCoords(coords)} coords={coords} />
+                <Text style={{fontSize: 20, fontWeight: 'bold'}}>{word}</Text>
             </View>
         )
     }
 
     render() {
         const { solutions } = this.props
+        console.log(solutions)
 
         return (
             <FlatList
+                style={{display: 'flex', flex: 1}}
                 data={solutions}
                 renderItem={this.renderMatrix}
             />

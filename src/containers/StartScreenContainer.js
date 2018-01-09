@@ -12,9 +12,8 @@ class StartScreenContainer extends Component {
         const letters = matrixToStr(matrixOfLetters)
 
         return (
-            <View>
+            <View style={styles.container}>
                 <Matrix matrix={matrixOfLetters} />
-                <Text>{letters}</Text>
                 {isOpenResultScreen ?
                     null :
                     <TextInput
@@ -40,6 +39,11 @@ class StartScreenContainer extends Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        display: 'flex',
+        flex: 1,
+        alignItems: 'center'
+    },
     inputStyle: {
         opacity: 0
     }

@@ -1,68 +1,35 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, Animated } from 'react-native'
+import { StyleSheet, Text, View, Animated, Dimensions, Image } from 'react-native'
 import { compose, pluck, sortBy, prop, reduce } from 'ramda'
-import { Letter } from '.'
+import { Box, Letter, Arrow } from '.'
+import arrowSrc from '../../images/ic_keyboard_arrow_up_3x.png'
+import { getArrowType } from '../utils'
 
 export default class Matrix extends Component {
     constructor() {
         super()
 
-        this.state = { markerTop: new Animated.Value(0), markerLeft: new Animated.Value(0) }
     }
     
     componentWillMount() {
-        const { shouldAnimate } = this.props
+      const { height } = Dimensions.get('window')
 
-        if (shouldAnimate) {
-            const { matrix } = this.props
-
-            const animations = compose(
-                pluck('animation'),
-                sortBy(prop('number')),
-                matrix => matrix.reduce((animations, row, rowIndex) => {
-                    row.forEach((x, columnIndex) => {
-                        if (typeof x === 'number') {
-                            animations.push({
-                                number: x,
-                                animation: Animated.parallel([
-                                    Animated.timing(this.state.markerTop, {
-                                        toValue: rowIndex * 60,
-                                        duration: 300
-                                    }),
-                                    Animated.timing(this.state.markerLeft, {
-                                        toValue: columnIndex * 60,
-                                        duration: 300
-                                    })
-                                ])
-                            })
-                        }
-                    })
-
-                    return animations
-                }, [])
-            )(matrix)
-
-            if (animations.length) {
-                Animated.loop(Animated.sequence(animations)).start()
-            }
-        }
+      this.setState({ width: height / 3 })
     }
 
-  renderColumn(x) {
-    if (typeof x === 'number') {
+  renderColumn(element) {
+    const { coords } = this.props
+
       return (
-        <Animated.View
-        >
-          <Letter letter={x} />
-        </Animated.View>
-      )
-    } else {
-      return (
-        <View>
-          <Letter letter={x} />
+        <View style={{ flex: 1 }}>
+            <Box>
+              {typeof element === 'string' ?
+                <Letter letter={element} /> :
+                <Arrow isFirstArrow={element === 1} type={getArrowType(coords, element)} />
+              }
+            </Box>
         </View>
       )
-    }
   }
 
   renderRow(row) {
@@ -74,31 +41,23 @@ export default class Matrix extends Component {
   }
 
   render() {
-    const { matrix, shouldAnimate } = this.props
-    console.log(this.state)
+    const { matrix } = this.props
+    const { width } = this.state
 
     return (
-      <View>
+      <View style={[ styles.matrix, { width, height: width }]}>
         {matrix.map(row => this.renderRow(row))}
-        { shouldAnimate ?
-            <Animated.View style={{
-                backgroundColor: "#000",
-                borderRadius: 60,
-                width: 60,
-                height: 60,
-                position: 'absolute',
-                top: this.state.markerTop,
-                left: this.state.markerLeft
-            }}/>
-            : null
-        }
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  matrix: {
+    display: 'flex'
+  },
   row: {
+    flex: 1,
     flexDirection: 'row'
   }
 })
