@@ -32,8 +32,7 @@ class ResultScreenContainer extends Component {
 
     render() {
         const { solutions } = this.props
-        console.log(solutions)
-
+        
         return (
             <FlatList
                 style={{display: 'flex', flex: 1}}

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, Animated, Dimensions, Image } from 'react-native'
+import Svg, { Path } from 'react-native-svg'
 import { compose, pluck, sortBy, prop, reduce } from 'ramda'
-import { Box, Letter, Arrow } from '.'
+import { Box, Letter, Arrow, WordPath } from '.'
 import arrowSrc from '../../images/ic_keyboard_arrow_up_3x.png'
 import { getArrowType } from '../utils'
 
@@ -25,7 +26,7 @@ export default class Matrix extends Component {
             <Box>
               {typeof element === 'string' ?
                 <Letter letter={element} /> :
-                <Arrow isFirstArrow={element === 1} type={getArrowType(coords, element)} />
+                null
               }
             </Box>
         </View>
@@ -41,12 +42,18 @@ export default class Matrix extends Component {
   }
 
   render() {
-    const { matrix } = this.props
+    const { matrix, coords } = this.props
     const { width } = this.state
 
     return (
       <View style={[ styles.matrix, { width, height: width }]}>
         {matrix.map(row => this.renderRow(row))}
+        {coords ?
+          <View style={{ position: 'absolute' }}>
+            <WordPath width={width} coords={coords} />
+          </View>:
+          null
+          }
       </View>
     )
   }
