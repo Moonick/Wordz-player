@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
     container: {
         display: 'flex',
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: 'rgb(50, 108, 167)'
     },
     inputStyle: {
         opacity: 0

@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         borderRadius: 5,
         borderColor: 'transparent',
-        backgroundColor: '#c2a3cc',
+        backgroundColor: 'rgb(242, 249, 252)',
         shadowColor: '#000',
         shadowOffset: { width: 0.3, height: 0.3 },
         shadowOpacity: 0.8,

@@ -23,9 +23,9 @@ class ResultScreenContainer extends Component {
 
     renderMatrix({item: { word, coords }}) {
         return ( 
-            <View style={{ display: 'flex', flex: 1, alignItems: 'center'}}>
+            <View style={{ display: 'flex', flex: 1, alignItems: 'center',backgroundColor: 'rgb(50, 108, 167)'}}>
                 <Matrix matrix={matrixOfCoords(coords)} coords={coords} />
-                <Text style={{fontSize: 20, fontWeight: 'bold'}}>{word}</Text>
+                <Text style={{fontSize: 20, fontWeight: 'bold', color: 'white'}}>{word}</Text>
             </View>
         )
     }
@@ -38,6 +38,7 @@ class ResultScreenContainer extends Component {
                 style={{display: 'flex', flex: 1}}
                 data={solutions}
                 renderItem={this.renderMatrix}
+                keyExtractor={(item) => item.word}
             />
         )
     }

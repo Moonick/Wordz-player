@@ -17,31 +17,31 @@ export default class WordPath extends Component {
             if (acc === '') {
                 return `M${this.getLineCoords(cell)}`
             }
-            
+
            return acc + ` L${this.getLineCoords(cell)}`
         }, '')
 
     }
-    drawDot(coord, index) {
-        const [cx, cy] = this.getLineCoords(coord).split(" ")
-        const isFirstDot = index === 0
-        const color = isFirstDot ? "red" : "black"
 
-        return (
-             <Circle
-                    cx={cx}
-                    cy={cy}
-                    r={isFirstDot ? "10" : "5"}
-                    stroke={color}
-                    strokeWidth="2.5"
-                    fill={color}
-            />
-        )
+    drawStartingPoint() {
+      const { coords } = this.props
+      const [cx, cy] = this.getLineCoords(coords[0]).split(" ")
+
+      return (
+        <Circle
+          cx={cx}
+          cy={cy}
+          r={13}
+          stroke="red"
+          strokeWidth={2.5}
+          fill="red"
+        />
+      )
     }
 
     render() {
         const { width, coords } = this.props
-    
+
         return (
             <Svg
                 width={width}
@@ -50,12 +50,12 @@ export default class WordPath extends Component {
                 <Path
                     d={this.drawPath()}
                     fill="none"
-                    stroke="black"
-                    strokeWidth={5}
+                    stroke="rgb(119, 174, 55)"
+                    strokeWidth={15}
                     strokeLinejoin="round"
                     strokeLinecap="round"
                 />
-                {coords.map((coord, index) => this.drawDot(coord, index))}
+                {this.drawStartingPoint()}
             </Svg>
         )
     }

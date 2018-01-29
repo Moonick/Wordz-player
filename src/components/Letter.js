@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize:35,
         fontWeight: 'bold',
-        textAlign: 'center'
+        textAlign: 'center',
+        color: 'rgb(80, 146, 186)'
     }
 })

@@ -9,7 +9,8 @@ import { getArrowType } from '../utils'
 export default class Matrix extends Component {
     constructor() {
         super()
-
+        this.renderRow = this.renderRow.bind(this)
+        this.renderColumn = this.renderColumn.bind(this)
     }
     
     componentWillMount() {
@@ -18,11 +19,11 @@ export default class Matrix extends Component {
       this.setState({ width: height / 3 })
     }
 
-  renderColumn(element) {
+  renderColumn(element, index) {
     const { coords } = this.props
 
       return (
-        <View style={{ flex: 1 }}>
+        <View key={index} style={{ flex: 1 }}>
             <Box>
               {typeof element === 'string' ?
                 <Letter letter={element} /> :
@@ -33,10 +34,10 @@ export default class Matrix extends Component {
       )
   }
 
-  renderRow(row) {
+  renderRow(row, index) {
     return (
-      <View style={styles.row}>
-        {row.map(x => this.renderColumn(x))}
+      <View key={index} style={styles.row}>
+        {row.map(this.renderColumn)}
       </View>
     )
   }
@@ -47,7 +48,7 @@ export default class Matrix extends Component {
 
     return (
       <View style={[ styles.matrix, { width, height: width }]}>
-        {matrix.map(row => this.renderRow(row))}
+        {matrix.map(this.renderRow)}
         {coords ?
           <View style={{ position: 'absolute' }}>
             <WordPath width={width} coords={coords} />
